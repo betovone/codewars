@@ -1,11 +1,13 @@
 import pandas as pd
 
 def sum_of_intervals(intervals):
+    if not isinstance(intervals, list) or not intervals: raise ValueError("El parámetro debe ser una lista")
     df = pd.DataFrame(intervals, columns=['start', 'end'])
     df = df.sort_values('start')
     suma = 0
     interval_tmp = min_start = max_end = None
     for interval in df.itertuples(1):
+        if not isinstance(interval.end, (int, float)) or not isinstance(interval.start, (int, float)): raise TypeError("Los valores deben ser enteros o flotantes")
         if interval_tmp:
             if interval.start < min(min_start, interval_tmp.start):
                 suma += interval_tmp.start - interval.start
@@ -35,3 +37,4 @@ if __name__ == "__main__":
     assert sum_of_intervals([(-1000000000, 1000000000)])== 2000000000
     assert sum_of_intervals([(0, 20), (-100_000_000, 10), (30, 40)])== 100_000_030
     assert sum_of_intervals([(10, 462), (45, 402), (107, 456), (270, 453), (234, 268), (224, 264)]) == 452
+    
