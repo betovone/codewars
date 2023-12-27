@@ -19,11 +19,15 @@ def sort_products(all_sections, all_products):
     sorted_sections = dict(sorted(dic_sections.items(), key=lambda item: item[1]))
     
     for p in all_products:
-        if not p.item_from_template and p.section_id:
-            if p.section_id not in dic_sections.keys():
-                raise Exception("La seccion del producto no está en el presupuesto")
+            if p.section_id:
+                if p.section_id not in dic_sections.keys():
+                    raise Exception("La seccion del producto no está en el presupuesto")
             
-            id_seq_nuevo_prod = buscar_seq_prox_section(p.section_id, sorted_sections)  
+            if not p.item_from_template and p.section_id:
+                id_seq_nuevo_prod = buscar_seq_prox_section(p.section_id, sorted_sections)  
+            else:
+                continue
+            
             for k, v in dic_ordenado.items():
                 if v >= id_seq_nuevo_prod:
                     dic_ordenado[k] = v + 1
@@ -31,8 +35,10 @@ def sort_products(all_sections, all_products):
                         dic_sections[k] = v + 1 
                         sorted_sections = dict(sorted(dic_sections.items(), key=lambda item: item[1]))
             dic_ordenado[p.id] = id_seq_nuevo_prod
-        else:
-            dic_ordenado[p.id] = p.sequence
+        # else:
+        #    dic_ordenado[p.id] = p.sequence
+    
+    
     
     
     
