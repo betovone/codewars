@@ -49,7 +49,7 @@ class TestSortProducts(unittest.TestCase):
     
     def test_sort(self):
         print("test sort products")
-        self.assertEquals(
+        self.assertEqual(
             sort_products(self.sections, self.products), 
             {
                 23:1,
@@ -61,7 +61,7 @@ class TestSortProducts(unittest.TestCase):
                 25:7
             }
         )
-        self.assertEquals(
+        self.assertEqual(
             sort_products(self.sections2, self.products2), 
             {
                 291:1,

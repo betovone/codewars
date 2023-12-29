@@ -14,7 +14,7 @@ def sort_products(all_sections, all_products):
     dic_products = {p.id: p.sequence for p in all_products if p.item_from_template}
     dic_ordenado.update(dic_sections)
     dic_ordenado.update(dic_products)
-    print(dic_ordenado)
+    # print(dic_ordenado)
     
     sorted_sections = dict(sorted(dic_sections.items(), key=lambda item: item[1]))
     
@@ -44,7 +44,7 @@ def sort_products(all_sections, all_products):
     
     d = dict(sorted(dic_ordenado.items(), key=lambda x: x[1]))
     
-    print(d)
+    # print(d)
             
     
     return d
